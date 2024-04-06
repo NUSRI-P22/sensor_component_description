@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="unilidar">
+  <xacro:macro name="unilidar_macro" params="*origin parent name">
+    <joint name="${name}_${parent}_joint" type="fixed">
+      <xacro:insert_block name="origin"/>
+      <parent link="${parent}"/>
+      <child link="${name}"/>
+    </joint>
+
+    <link name="${name}">
+    </link>
+
+    <joint name="unilidar_imu_${name}_joint" type="fixed">
+      <origin xyz="0.007698 0.014655 -0.00667" rpy="0 0 0"/>
+      <parent link="${name}"/>
+      <child link="unilidar_imu"/>
+    </joint>
+
+    <link name="unilidar_imu">
+    </link>
+
+  </xacro:macro>
+</robot>
